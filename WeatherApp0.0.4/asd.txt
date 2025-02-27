@@ -1,0 +1,187 @@
+
+# Кликабельные кнопки
+def open_link():
+    webbrowser.open("https://www.ventusky.com/tambov")
+
+def on_frame_click(event):
+    webbrowser.open("https://www.ventusky.com/tambov")
+
+
+link_button = ttk.Button(hero_city_and_weather_status, text="Перейти на сайт", command=open_link)
+link_button.pack(side=tk.TOP, pady=20, anchor='sw')
+
+# Создаем кликабельный Frame
+clickable_frame = ttk.Frame(hero_city_and_weather_status, width=200, height=100)
+clickable_frame.pack(side=tk.TOP, anchor='sw', padx=20, pady=20)
+
+# Привязываем событие клика к функции
+clickable_frame.bind("<Button-1>", on_frame_click)
+
+# Добавляем текст в Frame
+label = ttk.Label(clickable_frame, text="Нажмите здесь, чтобы перейти на сайт")
+label.pack(side=tk.TOP, anchor='sw', pady=20)
+
+# Привязываем событие клика к метке, чтобы она тоже работала
+label.bind("<Button-1>", on_frame_click)
+
+
+
+
+
+
+
+
+
+
+
+
+
+/// notificatoin
+
+# Создаем объект ToastNotifier
+notifier = ToastNotifier()
+
+# Функция для отправки уведомления
+def send_weather_notification():
+    notifier.show_toast("Погода ТГТУ", "Температура: -18°C, Облачно", duration=10)
+
+# Вызов функции уведомления после создания компонента WeatherByDay
+weather_by_day = WeatherByDay(hero_city_and_weather_status, style, weather_data)
+send_weather_notification()  # Отправляем уведомление
+
+
+
+
+
+tambov
+Широта: 52.71833
+Долгота: 41.43333
+
+conditions:
+
+
+PARTLY_CLOUDY
+CLOUDY
+OVERCAST
+Clear
+Partly Cloudy 
+Overcast 
+Snow
+Rain and Snow 
+Thunderstorm 
+Fog 
+Wind
+Snowfall 
+Downpour
+Blizzard
+LIGHT_RAIN
+RAIN
+THUNDERSTORM_WITH_RAIN
+THUNDERSTORM
+HEAVY_RAIN
+LIGHT_SNOW
+SNOW
+SLEET
+
+
+
+
+
+
+def get_weather_icon(condition):
+#     weather_icons = {
+#         "CLOUDY": r"./assets/WeatherIconsPack/Clody.png",
+#         "CLOUDY_DROP": r"./assets/WeatherIconsPack/CloudyDrop.png",
+#         "CLOUDY_FOGGY": r"./assets/WeatherIconsPack/CloudyFoggy.png",
+#         "CLOUDY_RAIN": r"./assets/WeatherIconsPack/CloudyRain.png",
+#         "CLOUDY_RAINBOW": r"./assets/WeatherIconsPack/CloudyRainbow.png",
+#         "CLOUDY_SHOWER": r"./assets/WeatherIconsPack/CloudyShower.png",
+#         "CLOUDY_SNOW": r"./assets/WeatherIconsPack/CloudySnow.png",
+#         "CLOUDY_WINDY": r"./assets/WeatherIconsPack/CloudyWindy.png",
+#         "CLOUDY_LIGHTNING_RAIN": r"./assets/WeatherIconsPack/Cloudy_Lightning_Rain.png",
+#         "CLOUDY_LIGHTNING_RAIN_MOON": r"./assets/WeatherIconsPack/Cloudy_Lightning_Rain_Moon.png",
+#         "CLOUDY_LIGHTNING_RAIN_SUNNY": r"./assets/WeatherIconsPack/Cloudy_Lightning_Rain_Sunny.png",
+#         "CLOUDY_LIGHTNING_RAIN_WINDY": r"./assets/WeatherIconsPack/Cloudy_Lightning_Rain_Windy.png",
+#         "CLOUDY_MOON": r"./assets/WeatherIconsPack/Cloudy_Moon.png",
+#         "CLOUDY_MOON_DROP": r"./assets/WeatherIconsPack/Cloudy_MoonDrop.png",
+#         "CLOUDY_MOON_FOGGY": r"./assets/WeatherIconsPack/Cloudy_MoonFoggy.png",
+#         "CLOUDY_MOON_LIGHTNING": r"./assets/WeatherIconsPack/Cloudy_MoonLightning.png",
+#         "CLOUDY_MOON_RAIN": r"./assets/WeatherIconsPack/Cloudy_MoonRain.png",
+#         "CLOUDY_MOON_SHOWER": r"./assets/WeatherIconsPack/Cloudy_MoonShower.png",
+#         "CLOUDY_MOON_SNOW": r"./assets/WeatherIconsPack/Cloudy_MoonSnow.png",
+#         "CLOUDY_MOON_WINDY": r"./assets/WeatherIconsPack/Cloudy_MoonWindy.png",
+#         "CLOUDY_SUNNY": r"./assets/WeatherIconsPack/Cloudy_Sunny.png",
+#         "CLOUDY_SUNNY_DROP": r"./assets/WeatherIconsPack/Cloudy_SunnyDrop.png",
+#         "CLOUDY_SUNNY_FOGGY": r"./assets/WeatherIconsPack/Cloudy_SunnyFoggy.png",
+#         "CLOUDY_SUNNY_LIGHTNING": r"./assets/WeatherIconsPack/Cloudy_SunnyLightning.png",
+#         "CLOUDY_SUNNY_RAIN": r"./assets/WeatherIconsPack/Cloudy_SunnyRain.png",
+#         "CLOUDY_SUNNY_SHOWER": r"./assets/WeatherIconsPack/Cloudy_SunnyShower.png",
+#         "CLOUDY_SUNNY_SNOW": r"./assets/WeatherIconsPack/Cloudy_SunnySnow.png",
+#         "CLOUDY_SUNNY_WINDY": r"./assets/WeatherIconsPack/Cloudy_SunnyWindy.png",
+#         "CLOUDY_WINDY_DROP": r"./assets/WeatherIconsPack/Cloudy_Windy_Drop.png",
+#         "CLOUDY_WINDY_FOGGY": r"./assets/WeatherIconsPack/Cloudy_Windy_Foggy.png",
+#         "CLOUDY_WINDY_RAIN": r"./assets/WeatherIconsPack/Cloudy_Windy_Rain.png",
+#         "CLOUDY_WINDY_SHOWER": r"./assets/WeatherIconsPack/Cloudy_Windy_Shower.png",
+#         "CLOUDY_WINDY_SNOW": r"./assets/WeatherIconsPack/Cloudy_Windy_Snow.png",
+#         "CLOUDY_WINDY_SNOW_MOON": r"./assets/WeatherIconsPack/Cloudy_Windy_Snow_Moon.png",
+#         "CLOUDY_WINDY_SNOW_SUNNY": r"./assets/WeatherIconsPack/Cloudy_Windy_Snow_Sunny.png",
+#         "FOGGY": r"./assets/WeatherIconsPack/Foggy.png",
+#         "RAIN": r"./assets/WeatherIconsPack/Rain.png",
+#         "SNOW": r"./assets/WeatherIconsPack/Snow.png",
+#         "SUNNY": r"./assets/WeatherIconsPack/Sunny.png",
+#         "WINDY": r"./assets/WeatherIconsPack/Windy.png",
+#     }
+#     return weather_icons.get(condition, "icon_default.png")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+weather_by_hour_data = [
+    ("00:00", "-22°", r"./assets/bhci_ic.png"),
+    ("01:00", "-21°", r"./assets/bhci_ic.png"),
+    ("02:00", "-21°", r"./assets/bhci_ic.png"),
+    ("03:00", "-20°", r"./assets/bhci_ic.png"),
+    ("04:00", "-20°", r"./assets/bhci_ic.png"),
+    ("05:00", "-19°", r"./assets/bhci_ic.png"),
+    ("06:00", "-19°", r"./assets/bhci_ic.png"),
+    ("07:00", "-18°", r"./assets/bhci_ic.png"),
+    ("08:00", "-18°", r"./assets/bhci_ic.png"),
+    ("09:00", "-20°", r"./assets/bhci_ic.png"),
+    ("10:00", "-18°", r"./assets/bhci_ic.png"),
+    ("11:00", "-16°", r"./assets/bhci_ic.png"),
+    ("12:00", "-17°", r"./assets/bhci_ic.png"),
+    ("13:00", "-18°", r"./assets/bhci_ic.png"),
+    ("14:00", "-16°", r"./assets/bhci_ic.png"),
+    ("15:00", "-15°", r"./assets/bhci_ic.png"),
+    ("16:00", "-16°", r"./assets/bhci_ic.png"),
+    ("17:00", "-16°", r"./assets/bhci_ic.png"),
+    ("18:00", "-16°", r"./assets/bhci_ic.png"),
+    ("19:00", "-16°", r"./assets/bhci_ic.png"),
+    ("20:00", "-16°", r"./assets/bhci_ic.png"),
+    ("21:00", "-16°", r"./assets/bhci_ic.png"),
+    ("22:00", "-17°", r"./assets/bhci_ic.png"),
+    ("23:00", "-18°", r"./assets/bhci_ic.png"),
+]
+
+weather_data = [
+    {"day": "Вчера", "temperature": "-15", "condition": "Облачно", "icon_path": r'assets\bhci_ic.png'},
+    {"day": "Сегодня", "temperature": "-26", "condition": "Облачно", "icon_path": r'assets\bhci_ic.png'},
+    {"day": "Завтра", "temperature": "-15", "condition": "Облачно", "icon_path": r'assets\bhci_ic.png'},
+    {"day": "Пн", "temperature": "-15", "condition": "Облачно", "icon_path": r'assets\bhci_ic.png'},
+    {"day": "Вт", "temperature": "-15", "condition": "Облачно", "icon_path": r'assets\bhci_ic.png'},
+    {"day": "Ср", "temperature": "-15", "condition": "Облачно", "icon_path": r'assets\bhci_ic.png'},
+]

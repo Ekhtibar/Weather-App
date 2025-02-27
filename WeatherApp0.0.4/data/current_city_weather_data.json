@@ -1,0 +1,8 @@
+{
+    "temperature": -8,
+    "condition": "CLOUDY",
+    "humidity": 82,
+    "windSpeed": 1,
+    "windDirection": "WEST",
+    "pressure": 753
+}
